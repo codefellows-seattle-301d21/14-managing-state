@@ -4,8 +4,10 @@ var app = app || {};
 (function(module) {
   const articleController = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-  // (put your response in a comment here)
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // this is setting an index method to articleController that calls index from articleView.  It it called as the .next() function after
+  // each load function below.  This index function takes the articles from the passed in context from the load functions and uses it to
+  // render the articles to the DOM.
   articleController.index = (ctx) => app.articleView.index(ctx.articles);
 
   // REVIEW: Middleware for grabbing one article by ID:
