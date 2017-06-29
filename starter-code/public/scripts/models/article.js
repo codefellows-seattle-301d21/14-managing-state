@@ -13,13 +13,13 @@ var app = app || {};
 
   // REVIEW: With ES6 arrow functions, if the function only has one parameter, you don't need parentheses.
   //         This is similar to saying Article.loadAll = function(rows).
-    // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+    // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live? The loadAll method passes a rows parameter. Rows are the results from the fetchAll method that then are sorted by what is published most recently. The .map method is invoked on rows which sorts instantiated Article objects and pushes them to the Article.all array.
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
     Article.all = rows.map(ele => new Article(ele));
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live? Article is using a method called fetchAll that passes in a callback. fetchAll makes a get request to the client. The response will pass in a paremeter into the loadAll method to the Article object. Once loaded in the callback function fires.
   Article.fetchAll = callback => {
     $.get('/articles')
     .then(
