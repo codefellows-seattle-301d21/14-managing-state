@@ -5,7 +5,7 @@ var app = app || {};
   const articleController = {};
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-  // (put your response in a comment here)
+  // This function is called by a page function in the routes.js file.  The ctx comes from the previous callback function (loadAll) which places the article object array within ctx.articles. It doesn't call other functions, but it calls itself with ctx parameters.
   articleController.index = (ctx) => app.articleView.index(ctx.articles);
 
   // REVIEW: Middleware for grabbing one article by ID:
@@ -16,7 +16,7 @@ var app = app || {};
     };
 
     // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-    // (put your response in a comment here)
+    // This uses the findWhere function to find articles within the database that match the article ID entered in the search.  It's called within the loadById method which is called within the route.js file when the route/:article_id resource is called.
     app.Article.findWhere('article_id', ctx.params.article_id, articleData);
   };
 
