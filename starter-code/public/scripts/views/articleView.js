@@ -5,6 +5,7 @@ var app = app || {};
   const articleView = {};
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //ANSWER: A render function that takes an Article object as a peramerter. It sets new values for a few choosen keys that will return these values complied into a template by handlebars.  
   const render = function(article) {
     let template = Handlebars.compile($('#article-template').text());
 
