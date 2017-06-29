@@ -14,12 +14,15 @@ var app = app || {};
   // REVIEW: With ES6 arrow functions, if the function only has one parameter, you don't need parentheses.
   //         This is similar to saying Article.loadAll = function(rows).
     // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+
+  // ANSWER: loadAll() takes the results from the get request, sorts the data out by the resluts published date and instantiates an array of objects within the Article object. It is called in the fetchAll function. No other named functions are called but it does rely on functional programming with the sort and map methods.
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
     Article.all = rows.map(ele => new Article(ele));
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //ANSWER: fetchAll makes a get request to the database table articles then calls the loadAll function which is part of the article model. It also includes a callback that is passed in by the controller articleView on its invokacation.
   Article.fetchAll = callback => {
     $.get('/articles')
     .then(
@@ -55,6 +58,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //ANSWER: numWordsByAuthor calls the all authors function first. Then uses the map method to instantiate new object literals. That obeject has has two properties one is the authors name and the other is a chain of methods to retrieve the number words. To do that the filter method finds only the articles by that author, the map method makes an array of the articles body length based on a regex match, then finally adds the array together with reduce.
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
@@ -75,6 +79,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //ANSWER: truncateTable makes an ajax call to the database, finds the articles table and deletes the entire articles table. It is not called and does take a callback function that fires once the table has been removed. Truncate table is reuqesting a delete clause against the table.
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
