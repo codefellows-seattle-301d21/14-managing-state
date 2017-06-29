@@ -78,6 +78,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //this deletes all the data in the table, but keeps the table, it calls on the delete method in server.js
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
