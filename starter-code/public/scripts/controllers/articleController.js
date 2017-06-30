@@ -6,7 +6,7 @@ var app = app || {};
 
   // What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
   // (put your response in a comment here)
-  // This calls app.articleView.index using ctx.articles as the argument. ctx represents data from a specified end point.
+  // This calls app.articleView.index using ctx.articles as the argument. ctx represents data from a specified end point. It shows the article section, hides sibling sections, clears the existing article section and renders the articles for the context.
   articleController.index = (ctx) => app.articleView.index(ctx.articles);
 
   // REVIEW: Middleware for grabbing one article by ID:
@@ -18,7 +18,7 @@ var app = app || {};
 
     // What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
     // (put your response in a comment here)
-    // This calls findWhere on an Article object passing 'article_id' as the field, ctx-params.article_id as the value, and articleData as the callback function. It queries the database for the article_id of the current context. 
+    // This calls findWhere on an Article object passing 'article_id' as the field, ctx-params.article_id as the value, and articleData as the callback function. It queries the database for the article_id of the current context.
     app.Article.findWhere('article_id', ctx.params.article_id, articleData);
   };
 

@@ -32,7 +32,7 @@ function proxyGitHub(request, response) {
 
 // What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
-// The server requests the html page associated with the extension. If the route is linked with an html page, it sends a response.
+// The server requests the html page associated with the extension. If the route is linked with an html page, it sends the html file as a response.
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
