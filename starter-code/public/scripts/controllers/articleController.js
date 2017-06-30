@@ -5,7 +5,7 @@ var app = app || {};
   const articleController = {};
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-  // (put your response in a comment here)
+  // ANSWER: This function is a function that is next callback function for the loadById function. It uses the ctx.articles property as a peramerter for the articleView.index method. The index method is from articleView.js.
   articleController.index = (ctx) => app.articleView.index(ctx.articles);
 
   // REVIEW: Middleware for grabbing one article by ID:
@@ -16,7 +16,7 @@ var app = app || {};
     };
 
     // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-    // (put your response in a comment here)
+    // ANSWER: This function calls the Article.findWhere method and gets the field of article_id from an Article object and sets the context's value to the value of the article_id. THen it invokes articleData function as a callback function. The fideWhere method is from article.js.
     app.Article.findWhere('article_id', ctx.params.article_id, articleData);
   };
 

@@ -58,7 +58,6 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-  //ANSWER: numWordsByAuthor calls the all authors function first. Then uses the map method to instantiate new object literals. That obeject has has two properties one is the authors name and the other is a chain of methods to retrieve the number words. To do that the filter method finds only the articles by that author, the map method makes an array of the articles body length based on a regex match, then finally adds the array together with reduce.
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
@@ -75,6 +74,7 @@ var app = app || {};
       numArticles: Article.all.length,
       numWords: Article.numWordsAll(),
       Authors: Article.allAuthors(),
+      //ANSWER: numWordsByAuthor calls the all authors function first. Then uses the map method to instantiate new object literals. That obeject has has two properties one is the authors name and the other is a chain of methods to retrieve the number words. To do that the filter method finds only the articles by that author, the map method makes an array of the articles body length based on a regex match, then finally adds the array together with reduce.
     }
   };
 
