@@ -13,4 +13,5 @@ page('/author/:authorName', app.articleController.loadByAuthor, app.articleContr
 page('/category/:categoryName', app.articleController.loadByCategory, app.articleController.index);
 
 // COMMENT: What is this function doing?
+// ANSWER: This function is invoking all of the above functions which have callback functions waiting to be invoked upon a path change. 
 page();
