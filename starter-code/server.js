@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
-// (put your response in a comment here)
+// DONE: What is this function doing? Why do we need it? Where does it receive a request from?
+// Pass through function that accesses github on behalf of something else.  Used to access Github, gets data from Github API.
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -29,8 +29,8 @@ function proxyGitHub(request, response) {
 }
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// DONE: What is this route doing? Where does it receive a request from?
+// routes for each specific page, gets data from the public folder in project root directory, sends back the specific html page
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -106,8 +106,9 @@ app.post('/articles', function(request, response) {
 });
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// DONE: What is this route doing? Where does it receive a request from?
+// This is an AJAX call that updates the author table with a new author based on author_id,
+// then updates the articles table with articles by that author.
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors

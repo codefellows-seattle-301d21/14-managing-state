@@ -4,7 +4,8 @@ var app = app || {};
 (function(module) {
   const newArticle = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // newArticle.initNewArticlePage calls newArticle.create and newArticle.submit from below, it uses the input from html to create a new article and save it to app.Article.
   newArticle.initNewArticlePage = function() {
     $('.tab-content').show();
     $('#export-field').hide();
@@ -55,6 +56,6 @@ var app = app || {};
     window.location = '../';
   };
 
-  newArticle.initNewArticlePage();
+  newArticle.initWewArticlePage.();
   module.newArticle = newArticle;
 })(app);
