@@ -13,7 +13,8 @@ var app = app || {};
 
   const render = Handlebars.compile($('#repo-template').text());
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This function calls the ui function which empties the list in the about section. Then shows the about section and hides all other sections. Then the rendered repos are being appended to the about section. It is being called in repos.requestRepos in repo.js in the end as a callback.
   repoView.index = function() {
     ui();
 

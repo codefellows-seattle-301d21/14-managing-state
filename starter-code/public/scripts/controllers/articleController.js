@@ -4,8 +4,9 @@ var app = app || {};
 (function(module) {
   const articleController = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-  // (put your response in a comment here)
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This function is being called from the article.loadAll function when it calls next(), and it calls articleView.index, which is in articleView.js, 
+  // and which appends articles, populates filters, sets teasers, etc. The index function takes articles from the context as an input.
   articleController.index = (ctx) => app.articleView.index(ctx.articles);
 
   // REVIEW: Middleware for grabbing one article by ID:
@@ -15,8 +16,9 @@ var app = app || {};
       next();
     };
 
-    // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-    // (put your response in a comment here)
+    // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+    // This function is looking for an article with the id supplied in the route id parameter and adding it to the context when it is found. 
+    // This is called by the articles/:id route and is the first function in the chain.)
     app.Article.findWhere('article_id', ctx.params.article_id, articleData);
   };
 
