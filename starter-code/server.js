@@ -19,7 +19,7 @@ app.use(express.static('./public'));
 
 
 // COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
-// (proxyGitHub returns a function call requestProxy, which takes two a request object as an parameter. requestProxy then returns a function that takes two arguements. We pass the parameters request and response from proxyGitHub as parameters for the function returned by requestProxy. proxyGithub is a call backfunction for any request url path that has the first dir name of git. requestProxy is a node_modules package. IDK What it does yet aside from estbalishing a proxy to hide our GH token request, but it takes a request body as a parameter.)
+// (proxyGitHub returns a function call requestProxy, which takes two request objects as an parameter. requestProxy then returns a function that takes two arguements. We pass the parameters request and response from proxyGitHub as parameters for the function returned by requestProxy. proxyGithub is a call backfunction for any request url path that has the first dir name of git. requestProxy is a node_modules package. IDK What it does yet aside from estbalishing a proxy to hide our GH token request, but it takes a request body as a parameter.)
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
