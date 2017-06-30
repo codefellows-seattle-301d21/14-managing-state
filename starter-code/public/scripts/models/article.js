@@ -14,12 +14,14 @@ var app = app || {};
   // REVIEW: With ES6 arrow functions, if the function only has one parameter, you don't need parentheses.
   //         This is similar to saying Article.loadAll = function(rows).
     // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+    //This function loads all the articles gathered from the data call and instantiates new Article objects for each and sorts them by date published.  It is called when the user nagivates to the homepage through the page('/') function call.  It uses the Article constructor which is defined above.
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
     Article.all = rows.map(ele => new Article(ele));
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //This is the AJAX call to the server to request the articles from the database and it is called from the articleController.  It calls the loadAll method that I explained above and registers then calls a callback function.
   Article.fetchAll = callback => {
     $.get('/articles')
     .then(
@@ -55,6 +57,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //This function is returning the number of words written by an individual author.  It is called within the adminView page.  It doesn't call other functions, but it does reduce an existing array.
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
@@ -75,6 +78,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //this deletes all the data in the table, but keeps the table, it calls on the delete method in server.js
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
