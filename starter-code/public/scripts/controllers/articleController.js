@@ -5,7 +5,7 @@ var app = app || {};
   const articleController = {};
 
   // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-  // (The index method from articleController invokes app.articleView.index it passes the context parameter which holds the article data)
+  // (The index method from articleController invokes app.articleView.index it passes the context parameter which holds the article data, which references it from routes.js)
   articleController.index = (ctx) => app.articleView.index(ctx.articles);
 
   // REVIEW: Middleware for grabbing one article by ID:

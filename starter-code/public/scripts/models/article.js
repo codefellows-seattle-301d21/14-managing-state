@@ -54,7 +54,8 @@ var app = app || {};
                       }, []);
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // numWordsByAuthor returns an array of objects with the properties of name and numwords, which represents the authors name and the number of words per author. This is accomplished through filtering through all articles, matching by author, finding the num of words in each of the body of each article by author and adding up all these words using reduce. numWordsByAuthor is called in adminView.js.
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
@@ -74,7 +75,8 @@ var app = app || {};
     }
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // When we invoke the truncateTable method, we pass in a callback. We make an ajax request with the method Delete, and console.log the response. Then the callback fires.
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',

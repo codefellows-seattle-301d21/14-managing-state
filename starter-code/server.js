@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
-// (put your response in a comment here)
+// DONE: What is this function doing? Why do we need it? Where does it receive a request from?
+// (This function is acting as a proxy that requests a specific Config Variable from our server. We need this because we don't want to allow public access to our token. Our token is queried by our external server to our Process object.)
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -29,8 +29,8 @@ function proxyGitHub(request, response) {
 }
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// DONE: What is this route doing? Where does it receive a request from?
+// (Whenever there is an ajax request, our server routes the request by sending the html file as a response. This is specified moreso by where the root is anchored, which is in our public directory. Whenever there is a request for a github file path, because there is a wildcard selector, it will fire our proxyGitHub function. )
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -107,7 +107,7 @@ app.post('/articles', function(request, response) {
 
 
 // COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// (This is a put request. Whenever the file path /articles/:id is requested, it queries our database to update the authors table by matching it with our array values. Then our articles table is updated using our primary key article_id. This primary key is associated with the  :id, in which the param can be accessed using request.param.id. Then a response is sent back to the requestee, which is from our article.js ajax call.)
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors

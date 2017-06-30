@@ -4,7 +4,9 @@ var app = app || {};
 (function(module) {
   const newArticle = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // the initNewArticlePage function shows content that you are serving to the client in "real-time". this is done by by invoking methods on change. When you "change" content, it creates new constructors that appends to the DOM. On submit, the new constructor makes an ajax call to update data into our database.
+
   newArticle.initNewArticlePage = function() {
     $('.tab-content').show();
     $('#export-field').hide();
