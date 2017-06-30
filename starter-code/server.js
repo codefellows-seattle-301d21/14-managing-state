@@ -19,7 +19,7 @@ app.use(express.static('./public'));
 
 
 // COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
-// (put your response in a comment here)
+// (proxyGitHub returns a function call requestProxy, which takes two a request object as an parameter. requestProxy then returns a function that takes two arguements. We pass the parameters request and response from proxyGitHub as parameters for the function returned by requestProxy. proxyGithub is a call backfunction for any request url path that has the first dir name od git. requestProxy is a node_modules package. IDK What it does yet aside from estbalishing a proxy to hide our GH token request, but it takes a request body as a parameter.)
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -30,7 +30,7 @@ function proxyGitHub(request, response) {
 
 
 // COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// (These are all request URLs from the front end. Return specified callback functions when a specific path is requested. The callbacks have 2 parameters which are the request body and response body. The callback indicates what to do with the objects whenever their specific url path is requested.)
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -45,14 +45,14 @@ app.get('/articles/find', (request, response) => {
   client.query(sql, [request.query.val])
   .then(result => response.send(result.rows))
   .catch(console.error);
-})
+});
 
 // REVIEW: This is a new route for gathering all of the unique categories from our articles table
 app.get('/categories', (request, response) => {
   client.query(`SELECT DISTINCT category FROM articles;`)
   .then(result => response.send(result.rows))
   .catch(console.error);
-})
+});
 
 app.get('/articles', (request, response) => {
   client.query(`
@@ -69,20 +69,20 @@ app.post('/articles', function(request, response) {
     'INSERT INTO authors(author, "authorUrl") VALUES($1, $2) ON CONFLICT DO NOTHING',
     [request.body.author, request.body.authorUrl],
     function(err) {
-      if (err) console.error(err)
-      queryTwo()
+      if (err) console.error(err);
+      queryTwo();
     }
-  )
+  );
 
   function queryTwo() {
     client.query(
       `SELECT author_id FROM authors WHERE author=$1`,
       [request.body.author],
       function(err, result) {
-        if (err) console.error(err)
-        queryThree(result.rows[0].author_id)
+        if (err) console.error(err);
+        queryThree(result.rows[0].author_id);
       }
-    )
+    );
   }
 
   function queryThree(author_id) {
@@ -130,7 +130,7 @@ app.put('/articles/:id', (request, response) => {
         request.body.body,
         request.params.id
       ]
-    )
+    );
   })
   .then(() => response.send('Update complete'))
   .catch(console.error);
@@ -166,8 +166,8 @@ function loadAuthors() {
         [ele.author, ele.authorUrl]
       )
       .catch(console.error);
-    })
-  })
+    });
+  });
 }
 
 function loadArticles() {
@@ -186,10 +186,10 @@ function loadArticles() {
             [ele.title, ele.category, ele.publishedOn, ele.body, ele.author]
           )
           .catch(console.error);
-        })
-      })
+        });
+      });
     }
-  })
+  });
 }
 
 function loadDB() {
