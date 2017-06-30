@@ -19,7 +19,7 @@ app.use(express.static('./public'));
 
 
 // COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
-// (put your response in a comment here)
+//ANSWER: proxyGitHub is an IIFE that uses an express request proxy to retrieve the token from heroku config vars. We need it for its response since that has all the data we need for our requestRepos function.
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -30,7 +30,7 @@ function proxyGitHub(request, response) {
 
 
 // COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// this route is waiting for a request to change url to /new then it repsonds by sending the file new.html. Its request doesnt come from anywhere.
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -107,7 +107,7 @@ app.post('/articles', function(request, response) {
 
 
 // COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// This route updates the authors table in the database whiling checking to see if the author already exists. Then it adds the article to the articles table that is submitted on new.html page. The request comes the article.js update record method.
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
