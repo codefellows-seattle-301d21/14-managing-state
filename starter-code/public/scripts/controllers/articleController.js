@@ -17,7 +17,7 @@ var app = app || {};
       next();
     };
 
-    // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+    // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
     // calls the findWhere function from article.js that queries the DB for and article based on an article id passed in as a context parameter
     // from the articleController index function and returns the articleData
     app.Article.findWhere('article_id', ctx.params.article_id, articleData);
