@@ -4,7 +4,8 @@ var app = app || {};
 (function(module) {
   const articleView = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This declares render as a constant function, which uses Handlebars to compile template objects and render them as text.
   const render = function(article) {
     let template = Handlebars.compile($('#article-template').text());
 
