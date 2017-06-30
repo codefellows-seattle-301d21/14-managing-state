@@ -20,7 +20,7 @@ app.use(express.static('./public'));
 
 // What is this function doing? Why do we need it? Where does it receive a request from?
 // (put your response in a comment here)
-// ANSWER: This function receives a request from api.github.com for an authorization token, which is stored on a proxy. Since we're not storing the token in a .js file anymore, the request is rerouted to Heroku.
+// This function receives a request from api.github.com for an authorization token, which is stored on a proxy. Since we're not storing the token in a .js file anymore, the request is rerouted to Heroku.
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
